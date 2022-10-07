@@ -11,15 +11,22 @@ namespace DDTestTaskWF
 		public bool[,] Field { get; private set; }
 		private int size;
 
-		public PlayingField(int size)
+		public PlayingField(int size, bool isRandomField)
 		{
 			this.size = size;
 			Field = new bool[size, size];
+
+			if (isRandomField) SetValues();
 		}
 
 		private void SetValues()
 		{
-			// метод, который должен задать полю значения для игры, а не только false
+			Random r = new Random();
+
+			for (int i = 0; i < r.Next(5,size); i++)
+			{
+				ChangeField(r.Next(0, size), r.Next(0, size));
+			}
 		}
 
 		public void ChangeField(int x, int y)

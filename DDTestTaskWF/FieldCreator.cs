@@ -12,8 +12,8 @@ namespace DDTestTaskWF
 		public static TableLayoutPanel CreateSquare(bool[,] field, Form form, EventHandler control)
 		{
 			var size = field.GetUpperBound(0) + 1;
-			var vertImagePath = "E:\\C# projects\\DDTestTaskWF\\DDTestTaskWF\\DDTestTaskWF\\Source\\Vertical.png";
-			var horImagePath = "E:\\C# projects\\DDTestTaskWF\\DDTestTaskWF\\DDTestTaskWF\\Source\\Horizontal.png";
+			//var vertImagePath = "E:\\C# projects\\DDTestTaskWF\\DDTestTaskWF\\DDTestTaskWF\\Source\\Vertical.png";
+			//var horImagePath = "E:\\C# projects\\DDTestTaskWF\\DDTestTaskWF\\DDTestTaskWF\\Source\\Horizontal.png";
 			//Create TableLayoutPanel
 			var panel = new TableLayoutPanel();
 			panel.RowCount = size;
