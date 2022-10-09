@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DDTestTaskWF
 {
@@ -23,7 +24,7 @@ namespace DDTestTaskWF
 		{
 			Random r = new Random();
 
-			for (int i = 0; i < r.Next(5,size); i++)
+			for (int i = 0; i < r.Next(5,15); i++)
 			{
 				ChangeField(r.Next(0, size), r.Next(0, size));
 			}
@@ -31,21 +32,16 @@ namespace DDTestTaskWF
 
 		public void ChangeField(int x, int y)
 		{
-			//изменить строку вместе с выбранной ячейкой
 			ChangeRow(x);
-			//изменить столбец без выбранной ячейки
 			ChangeColumn(x, y);
 		}
 
 		private void ChangeColumn(int x, int y)
 		{
-			for (int i = 0; i < x; i++)
+			for (int i = 0; i < size; i++)
 			{
-				Field[y, i] = !Field[y, i];
-			}
+				if (i == x) continue;
 
-			for (int i = x + 1; i < size; i++)
-			{
 				Field[y, i] = !Field[y, i];
 			}
 		}

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DDTestTaskWF
 {
-	public class MyButton : Button
+	public class GameButton : Button
 	{
 		public int X { get; private set; }
 		public int Y { get; private set; }
 
-		public MyButton(int x, int y)
+		public GameButton(int x, int y)
 		{
 			X = x;
 			Y = y;

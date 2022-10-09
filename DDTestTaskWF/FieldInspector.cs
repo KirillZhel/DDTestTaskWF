@@ -23,7 +23,6 @@ namespace DDTestTaskWF
 					checkingArray[k++] = field[i, j];
 				}
 			}
-
 			return checkingArray.All(e => e == true) || checkingArray.All(e => e == false);
 		}
 	}

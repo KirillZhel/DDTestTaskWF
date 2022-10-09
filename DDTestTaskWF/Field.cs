@@ -17,11 +17,6 @@ namespace DDTestTaskWF
 		PlayingField field;
 		TableLayoutPanel panel;
 
-		public Field()
-		{
-			InitializeComponent();
-		}
-
 		public Field(int size)
 		{
 			InitializeComponent();
@@ -30,85 +25,52 @@ namespace DDTestTaskWF
 
 		private void Field_Load(object sender, EventArgs e)
 		{
-			field = new PlayingField(_size, false);
+			field = new PlayingField(_size, true);
 			panel = FieldCreator.CreateSquare(field.Field, this, button_Click);
 			Controls.Add(panel);
-
-			
 		}
 
 		void button_Click(object sender, EventArgs e)
 		{
-			var button = (MyButton)sender;
-
-			//if (button.BackColor == Color.Red)
-			//	button.BackColor = Color.Blue;
-			//else
-			//	button.BackColor = Color.Red;
-			
-			//Instead put your logic here
-			//MessageBox.Show(string.Format($"You clicked {button.X}, {button.Y}"));
+			var button = (GameButton)sender;
 			ChangeCell(button.X, button.Y);
-
 		}
 
 		private void ChangeCell(int x, int y)
 		{
-			field.ChangeField(x, y);
+			field.ChangeField(y, x);
 			ChangeButtonsColumn(x, y);
 			ChangeButtonsRow(x);
 
 			if (FieldInspector.Check(field.Field))
 			{
 				MessageBox.Show("Вы выиграли, поздравляем!");
-				this.Close();
+				Close();
 			}
 		}
-
-		/*
-		private void TestMethod(bool[,] field)
-		{
-			StringBuilder sb = new StringBuilder();
-
-			for (int i = 0; i < _size; i++)
-			{
-				for (int j = 0; j < _size; j++)
-				{
-					sb.Append(field[i, j] + ",");
-				}
-				sb.Append($"\n");
-			}
-
-			MessageBox.Show(sb.ToString());
-		}
-		*/
 
 		private void ChangeButtonsColumn(int x, int y)
 		{
 			for (int i = 0; i < _size; i++)
 			{
 				if (i == x) continue;
-
-				var button = panel.GetControlFromPosition(y, i);
-
-				if (button.BackColor == Color.Red)
-					button.BackColor = Color.Blue;
-				else
-					button.BackColor = Color.Red;
+				ChangeButtonImage(y, i);
 			}
 		}
 
 		private void ChangeButtonsRow(int x)
 		{
 			for (int i = 0; i < _size; i++)
-			{
-				var button = panel.GetControlFromPosition(i,x);
+				ChangeButtonImage(i, x);
+		}
 
-				if (button.BackColor == Color.Red)
-					button.BackColor = Color.Blue;
-				else
-					button.BackColor = Color.Red;
-			}
+		private void ChangeButtonImage(int y, int x)
+		{
+			var verticalImage = (Image)Resource.Vertical;
+			var horizontalImage = (Image)Resource.Horizontal;
+			var button = (GameButton)panel.GetControlFromPosition(y, x);
+
+			button.Image = field.Field[button.X, button.Y] ? verticalImage : horizontalImage;
 		}
 	}
 }
