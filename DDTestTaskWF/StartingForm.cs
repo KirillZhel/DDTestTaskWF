@@ -2,8 +2,6 @@ namespace DDTestTaskWF
 {
 	public partial class StartingForm : Form
 	{
-		private Field field;
-
 		public StartingForm()
 		{
 			InitializeComponent();
